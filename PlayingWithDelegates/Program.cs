@@ -13,19 +13,24 @@ namespace PlayingWithDelegates
     {
         static void Main(string[] args)
         {
-            Action<int, int> AddTwoNumbers = (x, y) =>
+            Func<int, int, int> AddTwoNumbers = (x, y) =>
             {
                 Console.WriteLine(x);
                 Console.WriteLine("+");
                 Console.WriteLine(y);
-                Console.WriteLine(x + y);
+                int result = (x + y);
+                Console.WriteLine(result);
+                return result;
             }; 
-            Action<int, int> MultTwoNumbers = (x, y) =>
+            Func<int, int, int> MultTwoNumbers = (x, y) =>
             {
+                
                 Console.WriteLine(x);
                 Console.WriteLine("*");
                 Console.WriteLine(y);
-                Console.WriteLine(x * y);
+                var result = (x * y);
+                Console.WriteLine(result);
+                return result;
             };
 
 
@@ -34,6 +39,7 @@ namespace PlayingWithDelegates
 
             calc.Calculate(3, 5, AddTwoNumbers);
             calc.Calculate(10, 5, MultTwoNumbers);
+            Console.WriteLine(result);
 
 
 
@@ -41,7 +47,7 @@ namespace PlayingWithDelegates
         }
     public class Calculator
         {
-            public void Calculate(int x, int y, Action<int, int> MathOperator)
+            public void Calculate(int x, int y, Func<int, int, int> MathOperator)
             {
                 MathOperator(x, y);
                 Console.WriteLine("math complete");
